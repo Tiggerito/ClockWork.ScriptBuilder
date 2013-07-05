@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{35EF9722-991A-4F07-9E0D-30687DB81AC8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ClockWork.ScriptBuilder</RootNamespace>
+    <AssemblyName>ClockWork.ScriptBuilder</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>ClockWork.pfx</AssemblyOriginatorKeyFile>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\ClockWork.ScriptBuilder.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\ClockWork.ScriptBuilder.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ScriptCompressible.cs" />
+    <Compile Include="Encryption.cs" />
+    <Compile Include="IScriptIfCondition.cs" />
+    <Compile Include="IScriptWriter.cs" />
+    <Compile Include="JavaScript\ExtJs\ExtJsApplyIf.cs" />
+    <Compile Include="JavaScript\ExtJs\ExtJsApply.cs" />
+    <Compile Include="JavaScript\ExtJs\ExtJs.cs" />
+    <Compile Include="JavaScript\JsArguments.cs" />
+    <Compile Include="JavaScript\JsIf.cs" />
+    <Compile Include="JavaScript\JsVariableFactory.cs" />
+    <Compile Include="JavaScript\JsParameters.cs" />
+    <Compile Include="JavaScript\JsBlock.cs" />
+    <Compile Include="JavaScript\Js.cs" />
+    <Compile Include="JavaScript\JsFormatProvider.cs" />
+    <Compile Include="JavaScript\JsPropertyList.cs" />
+    <Compile Include="JavaScript\JsNew.cs" />
+    <Compile Include="JavaScript\JsStatement.cs" />
+    <Compile Include="LayoutChangedEventArgs.cs" />
+    <Compile Include="RenderingEventArgs.cs" />
+    <Compile Include="Sb.cs" />
+    <Compile Include="ScriptFormatProvider.cs" />
+    <Compile Include="ScriptIf.cs" />
+    <Compile Include="JavaScript\ExtJs\ExtJsClass.cs" />
+    <Compile Include="JavaScript\ExtJs\ExtJsComponent.cs" />
+    <Compile Include="IScriptItem.cs" />
+    <Compile Include="JavaScript\JsArray.cs" />
+    <Compile Include="ScriptIndent.cs" />
+    <Compile Include="ScriptItem.cs" />
+    <Compile Include="ScriptLine.cs" />
+    <Compile Include="ScriptSet.cs" />
+    <Compile Include="JavaScript\JsCall.cs" />
+    <Compile Include="ScriptLayout.cs" />
+    <Compile Include="JavaScript\JsFunction.cs" />
+    <Compile Include="JavaScript\JsList.cs" />
+    <Compile Include="Script.cs" />
+    <Compile Include="JavaScript\JsObject.cs" />
+    <Compile Include="JavaScript\JsProperty.cs" />
+    <Compile Include="JavaScript\JsQuote.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScriptSetWrapper.cs" />
+    <Compile Include="ScriptWrapper.cs" />
+    <Compile Include="ScriptWriter.cs" />
+    <Compile Include="XmlScript\IXmlRenderer.cs" />
+    <Compile Include="XmlScript\XsAttribute.cs" />
+    <Compile Include="XmlScript\Xs.cs" />
+    <Compile Include="XmlScript\XsCData.cs" />
+    <Compile Include="XmlScript\XsElement.cs" />
+    <Compile Include="XmlScript\XsFormatProvider.cs" />
+    <Compile Include="XmlScript\XsText.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Article1.htm" />
+    <Content Include="Article2.htm" />
+    <Content Include="FUTURE.txt" />
+    <Content Include="LICENCE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClockWork.pfx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

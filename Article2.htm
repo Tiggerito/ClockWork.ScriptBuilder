@@ -1,0 +1,104 @@
+<h2>Introduction</h2>
+<p>ClockWork Script Builder is a .Net library (2.0) to make the building of scripts more readable and structured.</p>
+<p>An extendible architecture lets developers add script building blocks (Script Items) for languages such as the ones provided for javascript (Js) and xml (Xs).</p>
+<h2>Motivation</h2>
+<p>Recently I started playing with ExtJs and I ended up needing to build large chunks of javascript from .Net code. I've never found a nice way to construct scripts in C# so this time I decided to write a library to help.</p>
+<h2>How to use it</h2>
+<p>In its simplest form it is a way to join a bunch of strings together so that each is writen on a new line...</p>
+<pre>Script script = Sb.Script(
+	&quot;line 1;&quot;,
+	&quot;line 2;&quot;,
+	&quot;line 3;&quot;
+);
+
+string result = script.Render();
+
+Console.WriteLine(result);
+</pre>
+<p>Results in the following output...</p>
+<pre>line 1;
+line 2;
+line 3;
+</pre>
+<p>However theres a lot more to it. Scripts don't just understand strings but accept any type of object. In particular, objects based on an IScriptItem are specifically designed to work with scripts and can be writen by anyone to extend scripting abilities.</p>
+<p>This example demonstrates the use of some core layout items.</p>
+<pre>Script script = Sb.Script(	
+	Sb.Line(&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,&quot;5&quot;,&quot;;&quot;),
+	Sb.Line(&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,&quot;5&quot;,&quot;;&quot;),
+	Sb.Indent(
+		Sb.Line(&quot;indented &quot;,&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,&quot;5&quot;,&quot;;&quot;),
+		Sb.Line(&quot;indented &quot;,&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,&quot;5&quot;,&quot;;&quot;),
+		Sb.Script(
+			Sb.Line(&quot;Some objects&quot;),
+			Sb.Line(&quot;Number = &quot;, 47),
+			Sb.Line(&quot;True = &quot;, true),
+			Sb.Line(&quot;Now is = &quot;, DateTime.Now)
+		)	
+	)
+);
+
+string result = script.Render();
+
+Console.WriteLine(result);
+</pre>
+<p>Results in the following output...</p>
+<pre>12345;
+12345;
+	indented 12345;
+	indented 12345;
+	Some objects
+	Number = 47
+	True = True
+	Now is = 23/08/2008 11:23:00 AM
+</pre>
+<p>You will have noticed all the Script items are created using &quot;Sb.&quot;. To make scripts easier to write and read I have created helper classes for each set of script items. They provide static methods that will create instances of script items for you.</p>
+<h2>Script Languages</h2>
+<p>I have currently developed the following sets of script items to help in writing scripts</p>
+<table cellspacing="1" cellpadding="1" border="1" width="100%" class="Table">
+    <tbody>
+        <tr>
+            <td><b>Script Set</b></td>
+            <td><b>Description</b></td>
+            <td><b>Helper Class</b></td>
+        </tr>
+        <tr>
+            <td>Core</td>
+            <td>Core Script Items to enable constructing formatted scripts</td>
+            <td>ClockWork.ScriptBuilder.<b>Sb</b></td>
+        </tr>
+        <tr>
+            <td>JavaScript</td>
+            <td>Items to help construct standard Javascript elements such as Objects, Arrays, Lists, Functions, Calls, Blocks, Statements</td>
+            <td>ClockWork.ScriptBuilder.JavaScript.<b>Js</b></td>
+        </tr>
+        <tr>
+            <td>XML</td>
+            <td>Items to construct basic xml nodes of Element, Attribute, Text and CData. Also supports direct writing to an XmlElement or XmlDocument</td>
+            <td>ClockWork.ScriptBuilder.XmlScript.<b>Xs</b></td>
+        </tr>
+        <tr>
+            <td>ExtJs</td>
+            <td>Class and Component items designed to make it easier to write subclasses for ExtJs classes</td>
+            <td>ClockWork.ScriptBuilder.JavaScript.ExtJs.<b>ExtJs</b></td>
+        </tr>
+    </tbody>
+</table>
+<h2>&nbsp;</h2>
+<h2>Points of Interest</h2>
+<h3>DOM &amp; Rendering</h3>
+<p>All objects added to a script are stored as-is (like a DOM). The string representation of the script is only created when its Render method is called. Among other things, this lets you build the script in steps letting you structure your builder code.</p>
+<p>If an IScriptItem is found while rendering then it will use its own Render method to render iteself.  Other objects are rendered using ToString with an optional format provider.</p>
+<p>Rendering is performed using a ScriptWriter which is passed into the Render methods. This object provides the ability to render to several destinations and also handles indentation.</p>
+<h3>ScriptLayout</h3>
+<p>Most items have the option to select a layout mode (Inline, InlineBlock, Block). The effects if the item will render across multiple lines.</p>
+<h3>ScriptIf</h3>
+<p>This item will do an if-then-else check at render time and then render the object that won.</p>
+<p>A collection based ScriptItem (ScriptSet) will result in false if its collection is empty.  Therefore you can decide if something is renderered based on the content of another item (all at render time).</p>
+<p>Objects can implement the IScriptIfCondition interface if they wish to dynamically provide results for the if condition.</p>
+
+<p>
+    &nbsp;</p>
+<h2>Licence</h2>
+<p>This libraries licence is based on the BSD licence. Generally speaking, anyone can use it but you can't sue me if it kills you.</p>
+<h2>Download</h2>
+<p>The library and documenation follow. It includes binaries, source and documentation.</p>

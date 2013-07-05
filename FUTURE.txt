@@ -1,0 +1,5 @@
+example ajax/json server
+
+variable provider with full/condensed options and auto generating
+
+Regex builder
